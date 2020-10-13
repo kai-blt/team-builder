@@ -65,7 +65,7 @@ export default function Form(props) {
 
         //If there's a member to edit, change records else add
         if (memberToEdit.id !== '') {
-           editMember()
+            editMember(formValues)
         } else {
             //Final cleanup to remove whitespace
             const newTeamMember = {
@@ -81,7 +81,7 @@ export default function Form(props) {
     return (
         <>
         <FormContainer onSubmit={onSubmit}>            
-            <h2>Add Team Member</h2>
+            <h2>{(memberToEdit.id === '') ? 'Add Team Member' : 'Edit Team Member'}</h2>
             <label>Name 
                 <input
                     id='name'

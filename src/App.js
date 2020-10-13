@@ -37,8 +37,16 @@ function App() {
     setMemberToEdit(member)
   }
 
-  const editMember = () => {
-    //WIP
+  const editMember = (formValues) => {
+    teamMembers.map(member => {
+      if (member.id === formValues.id) {
+        member.name = formValues.name;
+        member.role = formValues.role;
+        member.email = formValues.email;
+      }
+    })
+    setMemberToEdit({id: '', name: '', role: '', email: ''})
+    setTeamMembers([...teamMembers])
   }
 
   return (
