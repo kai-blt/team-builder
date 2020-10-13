@@ -3,11 +3,11 @@ import styled from 'styled-components'
 
 const TeamMemberCard = styled.div`
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
     padding: 2%;
-    width: 30%;
+    width: 40%;
     border: 1px solid #000;
     border-radius: 10px;
     background-color: #444;
