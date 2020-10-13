@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 
@@ -34,9 +34,16 @@ const defaultFormValues = {
 
 export default function Form(props) {  
     //function to update main app with entered form values passed through props
-    const { submit } = props;
+    const { submit, editMember } = props;
     //Initialize form values so form is a state controlled form
     const [formValues, setFormValues] = useState(defaultFormValues)
+
+    useEffect(() => {
+        console.log(editMember)
+       setFormValues(editMember);
+    }, [editMember])
+
+
    
     //Form Handling Functions
     const onInputChange = evt => {

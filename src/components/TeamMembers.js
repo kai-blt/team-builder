@@ -17,18 +17,20 @@ const TeamMemberCard = styled.div`
 `;
 
 export default function TeamMembers(props) {
-    const { teamData } = props;
+    const { teamData, editMember } = props;
 
     return (
         <>       
         <TeamMemberCard>            
         <h1>Team Members</h1>
         {teamData.map((member, index) => {
+
             return (
             <div key={index}>
                 <h2>{member.name}</h2>
                 <div>{member.role}</div>
                 <div>{member.email}</div>
+                <button onClick={() => editMember(member)}>Edit</button>
             </div>
             )
         })}

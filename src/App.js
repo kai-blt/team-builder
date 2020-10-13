@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react'
 import Form from './components/Form'
 import TeamMembers from './components/TeamMembers'
@@ -23,15 +23,22 @@ function App() {
     email: 'kai@kai.com'
   }]);
 
+  //Keep track of members to edit
+  const [memberToEdit, setMemberToEdit] = useState({name: '', role: '', email: ''});
+
   //Submit handler to push form values into teamMembers
   const submit = (formValues) => {
       setTeamMembers([...teamMembers, formValues]);
   } 
 
+  const editMember = (member) => {
+    setMemberToEdit(member)
+  }
+
   return (
     <AppContainer>
-      <TeamMembers teamData={teamMembers} />
-      <Form submit={submit} />
+      <TeamMembers teamData={teamMembers} editMember={editMember}/>
+      <Form submit={submit} editMember={memberToEdit}/>
     </AppContainer>
   );
 }
