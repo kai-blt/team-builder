@@ -2,8 +2,18 @@ import React from 'react';
 import { useState } from 'react'
 import Form from './components/Form'
 import TeamMembers from './components/TeamMembers'
+import styled from 'styled-components'
 import './App.css';
 
+const AppContainer = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+
+`;
 
 function App() {
   //Team Member Data State 
@@ -19,10 +29,10 @@ function App() {
   } 
 
   return (
-    <div className="App">
+    <AppContainer>
       <TeamMembers teamData={teamMembers} />
       <Form submit={submit} />
-    </div>
+    </AppContainer>
   );
 }
 

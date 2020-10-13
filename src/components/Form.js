@@ -1,7 +1,30 @@
 import React from 'react';
 import { useState } from 'react'
+import styled from 'styled-components'
 
 
+
+//Styled components
+const FormContainer = styled.form`
+    padding: 2%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    label {
+        font-weight: 700;
+        margin: 4%;
+    }
+    select {
+        margin: 2%;
+    }
+
+    button {
+        margin: 4%;
+        font-size: 1.25rem;
+        padding: 2%;
+    }
+`;
 
 const defaultFormValues = {
     name: '',
@@ -45,8 +68,8 @@ export default function Form(props) {
 
     return (
         <>
-        <h2>Add Team Member</h2>
-        <form onSubmit={onSubmit}>
+        <FormContainer onSubmit={onSubmit}>            
+            <h2>Add Team Member</h2>
             <label>Name 
                 <input
                     id='name'
@@ -75,7 +98,7 @@ export default function Form(props) {
                 ></input>
             </label>
             <button>Submit</button>
-        </form>
+        </FormContainer>
         </>
     )
 }
