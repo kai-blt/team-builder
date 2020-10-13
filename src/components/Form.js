@@ -10,7 +10,9 @@ const defaultFormValues = {
 }
 
 export default function Form(props) {  
+    //function to update main app with entered form values passed through props
     const { submit } = props;
+    //Initialize form values so form is a state controlled form
     const [formValues, setFormValues] = useState(defaultFormValues)
    
     //Form Handling Functions
@@ -22,8 +24,23 @@ export default function Form(props) {
     }
     
     const onSubmit = evt => {
+        //Stop from from utilizing default behaviour causing reload
         evt.preventDefault();
-        submit(formValues);
+        
+        //Handle missing fields and alert user
+        if (!formValues.name || !formValues.role || !formValues.email) {
+            alert('Please fill out all fields')
+            return
+        }
+
+        //Final cleanup to remove whitespace
+        const newTeamMember = {
+            name: formValues.name.trim(),
+            role: formValues.role,
+            email: formValues.email.trim()
+        }
+
+        submit(newTeamMember);
     }
 
     return (
