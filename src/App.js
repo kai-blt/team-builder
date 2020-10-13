@@ -4,6 +4,7 @@ import Form from './components/Form'
 import TeamMembers from './components/TeamMembers'
 import './App.css';
 
+
 function App() {
   //Team Member Data State 
   const [teamMembers, setTeamMembers] = useState([{
@@ -12,42 +13,15 @@ function App() {
     email: 'kai@kai.com'
   }]);
 
-  //Form Data State
-  const [formData, setFormData] = useState([{
-    name: '',
-    role: '',
-    email: ''
-  }]);
-
-
-  //Form Handling Functions
-  const onInputChange = evt => {
-    setFormData({
-      ...formData,
-      [evt.target.name]: evt.target.value
-    })
-  }
-
-  const submit = (evt) => {
-      evt.preventDefault();
-      setTeamMembers([...teamMembers, formData]);
+  //Submit handler to push form values into teamMembers
+  const submit = (formValues) => {
+      setTeamMembers([...teamMembers, formValues]);
   } 
 
   return (
     <div className="App">
-      <h1>Team Members</h1>
-      <div>
-        {teamMembers.map(member => {
-          return (
-          <div>
-            <h2>{member.name}</h2>
-            <div>{member.role}</div>
-            <div>{member.email}</div>
-          </div>
-          )
-        })}
-      </div>
-      <Form submit={submit} onInputChange={onInputChange}/>
+      <TeamMembers teamData={teamMembers} />
+      <Form submit={submit} />
     </div>
   );
 }

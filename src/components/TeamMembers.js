@@ -7,12 +7,12 @@ export default function TeamMembers(props) {
         <>
         <h1>Team Members</h1>
         <div>
-        {teamData.map(member => {
+        {teamData.map((member, index) => {
             return (
-            <div>
-            <h2>{member.name}</h2>
-            <div>{member.role}</div>
-            <div>{member.email}</div>
+            <div key={index}>
+                <h2>{member.name}</h2>
+                <div>{member.role}</div>
+                <div>{member.email}</div>
             </div>
             )
         })}
