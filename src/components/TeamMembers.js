@@ -17,7 +17,7 @@ const TeamMemberCard = styled.div`
 `;
 
 export default function TeamMembers(props) {
-    const { teamData, editMember } = props;
+    const { teamData, setMemberEdit } = props;
 
     return (
         <>       
@@ -30,7 +30,7 @@ export default function TeamMembers(props) {
                 <h2>{member.name}</h2>
                 <div>{member.role}</div>
                 <div>{member.email}</div>
-                <button onClick={() => editMember(member)}>Edit</button>
+                <button onClick={() => setMemberEdit(member)}>Edit</button>
             </div>
             )
         })}

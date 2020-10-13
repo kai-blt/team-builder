@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
-
+import { v4 as uuid } from 'uuid'
 
 
 //Styled components
@@ -34,15 +34,15 @@ const defaultFormValues = {
 
 export default function Form(props) {  
     //function to update main app with entered form values passed through props
-    const { submit, editMember } = props;
+    const { submit, memberToEdit, editMember } = props;
     //Initialize form values so form is a state controlled form
     const [formValues, setFormValues] = useState(defaultFormValues)
 
-    useEffect(() => {
-        console.log(editMember)
-       setFormValues(editMember);
-    }, [editMember])
 
+    //Only populate the fields on the form if there's a membert to update
+    useEffect(() => {
+       setFormValues(memberToEdit);
+    }, [memberToEdit])
 
    
     //Form Handling Functions
@@ -63,14 +63,19 @@ export default function Form(props) {
             return
         }
 
-        //Final cleanup to remove whitespace
-        const newTeamMember = {
-            name: formValues.name.trim(),
-            role: formValues.role,
-            email: formValues.email.trim()
-        }
-
-        submit(newTeamMember);
+        //If there's a member to edit, change records else add
+        if (memberToEdit.id !== '') {
+           editMember()
+        } else {
+            //Final cleanup to remove whitespace
+            const newTeamMember = {
+                id: uuid(),
+                name: formValues.name.trim(),
+                role: formValues.role,
+                email: formValues.email.trim()
+            }
+            submit(newTeamMember);
+        }        
     }
 
     return (
